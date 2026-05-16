@@ -1,0 +1,18 @@
+# Xcode
+build/
+DerivedData/
+*.xcodeproj
+*.xcworkspace
+!project.yml
+
+# macOS
+.DS_Store
+
+# Swift
+.swiftpm/
+.build/
+
+# Local
+build.log
+_other/
+

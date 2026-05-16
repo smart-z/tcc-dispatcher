@@ -1,0 +1,55 @@
+name: TCCDispatcher
+options:
+  bundleIdPrefix: com.tcccontrol
+  deploymentTarget:
+    macOS: "15.0"
+  xcodeVersion: "15.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "15.0"
+
+targets:
+  TCCDispatcher:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+        type: group
+        excludes:
+          - CLI
+    dependencies:
+      - framework: SwiftUI.framework
+        embed: false
+      - sdk: libsqlite3.tbd
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tcccontrol.app
+        INFOPLIST_FILE: Sources/Info.plist
+        PRODUCT_NAME: TCC Dispatcher
+        MARKETING_VERSION: "0.00001"
+        CURRENT_PROJECT_VERSION: "1"
+        CODE_SIGN_IDENTITY: "BlinkScreenTranslate-Dev"
+        CODE_SIGNING_REQUIRED: "NO"
+        ENABLE_HARDENED_RUNTIME: "NO"
+        COMBINE_HIDPI_IMAGES: "YES"
+        INFOPLIST_KEY_CFBundleIconFile: AppIcon
+        INFOPLIST_KEY_CFBundleIconFile: AppIcon
+
+  TCCDispatcherCLI:
+    type: tool
+    platform: macOS
+    sources:
+      - path: Sources/CLI
+        type: group
+    dependencies:
+      - sdk: libsqlite3.tbd
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tcccontrol.cli
+        PRODUCT_NAME: tcc-dispatcher
+        MARKETING_VERSION: "0.00001"
+        CURRENT_PROJECT_VERSION: "1"
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGNING_REQUIRED: "NO"
